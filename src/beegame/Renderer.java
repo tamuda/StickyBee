@@ -1,6 +1,9 @@
 package beegame;
 
 import entity.Player;
+import entity.Worm;
+
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +21,9 @@ public class Renderer extends JPanel implements Runnable {
     int FPS = 60;
 
     Player player = new Player(this,keyH);
+    Worm worm = new Worm(this,keyH);
+
+/*    public AssetSetter aSetter = new AssetSetter(this);*/
 
 
     public Renderer(){
@@ -28,6 +34,7 @@ public class Renderer extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
+
 
     @Override
     public void run() {
@@ -73,7 +80,14 @@ public class Renderer extends JPanel implements Runnable {
         //this repaints the bee everytime the method is called
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
+
+        //Bee
         player.draw(g2);
+        for(int i=0;i<5;i++) {
+            worm.draw(g2);
+
+        }
         g2.dispose();
 
     }
@@ -82,6 +96,9 @@ public class Renderer extends JPanel implements Runnable {
 
     public void update(){
         player.update();
+        worm.update();
+
+
     }
 
 
