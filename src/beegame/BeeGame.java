@@ -15,6 +15,7 @@ public class BeeGame {
         //creating a new instance of the Bee Class
 
         JFrame jframe = new JFrame();
+
         //renderer = new Renderer();
 
 

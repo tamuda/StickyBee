@@ -1,13 +1,14 @@
 package beegame;
 
+/*import entity.CollisionChecker;*/
 import entity.Player;
 import entity.Worm;
 
 
 
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 
 public class Renderer extends JPanel implements Runnable {
 
@@ -20,8 +21,12 @@ public class Renderer extends JPanel implements Runnable {
     public final int playerSize = 48;
     int FPS = 60;
 
+
     Player player = new Player(this,keyH);
     Worm worm = new Worm(this,keyH);
+    static JLabel jtimer = new JLabel();
+
+    Sound sound = new Sound();
 
 /*    public AssetSetter aSetter = new AssetSetter(this);*/
 
@@ -32,7 +37,10 @@ public class Renderer extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(800,800));
         this.addKeyListener(keyH);
-        this.setFocusable(true);
+        jtimer.setText("Heyyyyy");
+        jtimer.setFont(new Font("Arial",18,18));
+        this.add(jtimer);
+       // this.setFocusable(true);
     }
 
 
@@ -42,6 +50,7 @@ public class Renderer extends JPanel implements Runnable {
         double drawInterval = 1000000000/FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
 
+
         while(gameThread != null) {
             long currentTime = System.nanoTime();
             requestFocusInWindow();
@@ -49,9 +58,16 @@ public class Renderer extends JPanel implements Runnable {
 
 
             //UPDATE: changes the bee position
-            update();
+            try {
+                update();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             //REPAINT: repaints the bee on the new position
             repaint();
+
+
+
 
 
             try {
@@ -70,6 +86,7 @@ public class Renderer extends JPanel implements Runnable {
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
+        playMusic(0);
     }
 
 
@@ -80,6 +97,9 @@ public class Renderer extends JPanel implements Runnable {
         //this repaints the bee everytime the method is called
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
+        //timer
+
 
 
         //Bee
@@ -94,11 +114,35 @@ public class Renderer extends JPanel implements Runnable {
 
 
 
-    public void update(){
+    public void update() throws InterruptedException {
         player.update();
         worm.update();
 
 
+
+
+
+
+    }
+    public void timer(){
+        long milliseconds = System.currentTimeMillis();
+
+        int seconds = (int) (milliseconds / 1000) % 60 ;
+        int minutes = (int) ((milliseconds / (1000*60)) % 60);
+        jtimer.setText(minutes + ":" + seconds);
+    }
+
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+    public void stopMusic(){
+        sound.stop();
+    }
+    public void playSE(int i){
+        sound.setFile(i);
+        sound.play();
     }
 
 
