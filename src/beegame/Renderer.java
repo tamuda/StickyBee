@@ -24,9 +24,11 @@ public class Renderer extends JPanel implements Runnable {
 
     Player player = new Player(this,keyH);
     Worm worm = new Worm(this,keyH);
+    public UI ui = new UI(this);
     static JLabel jtimer = new JLabel();
 
-    Sound sound = new Sound();
+
+    static Sound sound = new Sound();
 
 /*    public AssetSetter aSetter = new AssetSetter(this);*/
 
@@ -37,8 +39,8 @@ public class Renderer extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(800,800));
         this.addKeyListener(keyH);
-        jtimer.setText("Heyyyyy");
-        jtimer.setFont(new Font("Arial",18,18));
+        jtimer.setText("You Win");
+        jtimer.setFont(new Font("Helvetica",18,18));
         this.add(jtimer);
        // this.setFocusable(true);
     }
@@ -71,15 +73,9 @@ public class Renderer extends JPanel implements Runnable {
 
 
             try {
-                double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime = remainingTime/1000000;
-                Thread.sleep((long)remainingTime);
-                nextDrawTime += drawInterval;
-                if (remainingTime < 0){
-                    remainingTime=0;
-                }
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.sleep(10);
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
             }
         }
     }
@@ -87,6 +83,7 @@ public class Renderer extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
         playMusic(0);
+        UI.countdown();
     }
 
 
@@ -95,34 +92,29 @@ public class Renderer extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g){
         //this repaints the bee everytime the method is called
+
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        //timer
+            //UI
+            ui.draw(g2);
+            //Bee
+            player.draw(g2);
+            //Worm
+            for(int i=0;i<5;i++) {
+                worm.draw(g2);
+            }
 
 
-
-        //Bee
-        player.draw(g2);
-        for(int i=0;i<5;i++) {
-            worm.draw(g2);
-
-        }
-        g2.dispose();
-
+            g2.dispose();
     }
 
 
 
     public void update() throws InterruptedException {
-        player.update();
-        worm.update();
 
-
-
-
-
-
+                player.update();
+                worm.update();
     }
     public void timer(){
         long milliseconds = System.currentTimeMillis();
@@ -137,7 +129,7 @@ public class Renderer extends JPanel implements Runnable {
         sound.play();
         sound.loop();
     }
-    public void stopMusic(){
+    public static void stopMusic(){
         sound.stop();
     }
     public void playSE(int i){

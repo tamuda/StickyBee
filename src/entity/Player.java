@@ -3,6 +3,7 @@ package entity;
 import beegame.KeyHandler;
 import beegame.Renderer;
 import beegame.Sound;
+import beegame.UI;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,6 +17,9 @@ public class Player extends Entity {
     KeyHandler keyH;
     Sound sound2 = new Sound();
 
+    public static int lives = 3;
+    public static int collisions =90;
+
     Rectangle r1 = new Rectangle(0, 0, 50, 25);
 
     int recSize = 50;
@@ -23,6 +27,8 @@ public class Player extends Entity {
     public static long startTime;
     boolean playing;
     public boolean colliding = false;
+    public boolean gameOver,youWin = false;
+
 
     public Player(Renderer gp, KeyHandler keyH) {
         this.gamePlay = gamePlay;
@@ -62,11 +68,11 @@ public class Player extends Entity {
 
         detectCollision();
         //Moves bee up and down when corresponding key is pressed
-        if ((keyH.upPressed == true) || (keyH.downPressed == true)) {
-            if (keyH.upPressed == true) {
+        if (Player.lives>0 &&(keyH.upPressed == true) || (keyH.downPressed == true)) {
+            if (keyH.upPressed == true && Player.lives>0) {
                 direction = "up";
                 y -= speed;
-            } else if (keyH.downPressed == true) {
+            } else if (keyH.downPressed == true && Player.lives>0) {
                 direction = "down";
                 y += speed;
 
@@ -85,7 +91,24 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
 
-        } else y += (speed / 2);
+        }
+        else if(Player.lives<=0){
+            spriteNumber = 3;
+            if(y<=700){
+            y += (speed /3);}}
+        else{
+            y += (speed / 2);}
+        if(Player.lives<=0 && UI.timeLeft>=0){
+            if (!gameOver){
+            playSE(5);
+            Renderer.stopMusic();
+            gameOver=true;}
+        }
+        else if(Player.lives>0 && UI.timeLeft<=0){
+            if (!youWin){
+                playSE(2);
+                youWin=true;}
+    }
 
 
     }
@@ -137,12 +160,16 @@ public class Player extends Entity {
                 spriteNumber = 3;
                 colliding = true;
                 if (colliding=true) {
-                    if ((System.currentTimeMillis()%10)==0 && ((startTime-System.currentTimeMillis())<100)) {
+                    if ((System.currentTimeMillis()%5)==0 && ((startTime-System.currentTimeMillis())<100)) {
+                        collisions -=5;
                         collidingSound();
+                        if((System.currentTimeMillis()%20)==0)
+                        {stopMusic();}
 
                         }
                     }
                 }
+            lives = collisions/30;
 
 
 
@@ -166,12 +193,7 @@ public class Player extends Entity {
 
     public void collidingSound()  {
         playSE(3);
-        //System.out.println(System.currentTimeMillis() - startTime);
-     /*   if ((System.currentTimeMillis() - startTime) < 5) { // check if the time difference is less than 1 second
-                playSE(1);
-            }
-        if ((System.currentTimeMillis() - startTime) > 5000) { // check if the time difference is less than 1 second
-            startTime =System.currentTimeMillis();*/
+
         }
 
     }

@@ -15,8 +15,8 @@ public class Sound {
         soundURL[2] = getClass().getResource("/res/Sound/life.wav");
         soundURL[3] = getClass().getResource("/res/Sound/collision3.wav");
         soundURL[4] = getClass().getResource("/res/Sound/collision4.wav");
-        soundURL[5] = getClass().getResource("/res/Sound/collision5.wav");
-        soundURL[6] = getClass().getResource("/res/Sound/complete.wav");
+        soundURL[5] = getClass().getResource("/res/Sound/lose.wav");
+        soundURL[6] = getClass().getResource("/res/Sound/complete2.wav");
     }
 
     public void setFile(int i) {
@@ -38,8 +38,7 @@ public class Sound {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
         public void stop(){
-        clip.start();
-        clip.stop();
+        clip.close();
         }
 
     }
