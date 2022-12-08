@@ -1,21 +1,15 @@
 import javax.swing.*;
 
 public class BeeGame {
-
-    public  static BeeGame beeGame;
-    public final int WIDTH = 800, HEIGHT = 800;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 800;
 
 
     public static void main(String[] args) {
         //creating a new instance of the Bee Class
-
         JFrame jframe = new JFrame();
-
         Renderer renderer;
-        renderer = new Renderer();
-
-
-        jframe.setSize(800, 800);
+        jframe.setSize(WIDTH, HEIGHT);
         jframe.setVisible(true);
         jframe.setResizable(false);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,16 +21,6 @@ public class BeeGame {
 
 
     }
-
-
-    //Renderer Class
-
-
-
-
-
-
-
 
 }
 

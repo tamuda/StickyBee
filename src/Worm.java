@@ -15,7 +15,6 @@ public class Worm extends Entity {
 
 
     public Worm(Renderer gp, KeyHandler keyH) {
-        this.gamePlay = gamePlay;
         this.keyH = keyH;
         setDefaultValues();
         getPlayerImage();
@@ -34,11 +33,10 @@ public class Worm extends Entity {
     }
 
     public static int randomLocator(int min, int max) {
-        int rand = (int) Math.floor(Math.random() * (max - min + 1) + min);
-        return rand;
+        return (int) Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    public void getPlayerImage() {
+    public void getPlayerImage() { //Assigns two different sprite images for the worms
         try {
             moveWorm = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-05.png"));
             moveWorm2 = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-10.png"));
@@ -49,18 +47,18 @@ public class Worm extends Entity {
 
     public void update() {
         //Moves worms faster when key is pressed else they move slower
-        if ((keyH.upPressed == true) || (keyH.downPressed == true)) {
+        if ((keyH.upPressed) || (keyH.downPressed)) {
             for (int k = 0; k < worldX.length; k++) {
                 worldX[k] -= (int) Math.floor(Math.random() * (12 - 2 + 1) + 2);
                 ;
                 r2.setRect(worldX[k], worldY[k], 100, 100);
             }
-            if (keyH.upPressed == true) {
+            if (keyH.upPressed) {
                 direction = "up";
 
-            } else if (keyH.downPressed == true) {
+            } else if (keyH.downPressed) {
                 direction = "down";
-            }
+            }//Animates the worm
             spriteCounter = spriteCounter + 1;
             if (spriteCounter > 5) {
                 if (spriteNumber == 1) {
@@ -101,22 +99,22 @@ public class Worm extends Entity {
         }
 
         switch (direction) {
-            case "up":
+            case "up" -> {
                 if (spriteNumber == 1) {
                     image = moveWorm;
                 }
                 if (spriteNumber == 2) {
                     image = moveWorm2;
                 }
-                break;
-            case "down":
+            }
+            case "down" -> {
                 if (spriteNumber == 1) {
                     image = moveWorm2;
                 }
                 if (spriteNumber == 2) {
                     image = moveWorm;
                 }
-                break;
+            }
         }
 
 

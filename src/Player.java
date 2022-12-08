@@ -4,27 +4,19 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
-
 public class Player extends Entity {
-    Renderer gamePlay;
     KeyHandler keyH;
     Sound sound2 = new Sound();
 
     public static int lives = 3;
-    public static int collisions =90;
-
+    public static int collisions = 90;
     Rectangle r1 = new Rectangle(0, 0, 50, 25);
-
-    int recSize = 50;
-    int i=0;
     public static long startTime;
-    boolean playing;
     public boolean colliding = false;
-    public boolean gameOver,youWin = false;
+    public boolean gameOver, youWin = false;
 
 
     public Player(Renderer gp, KeyHandler keyH) {
-        this.gamePlay = gamePlay;
         this.keyH = keyH;
         solidArea = new Rectangle();
         solidArea.y = 10;
@@ -38,14 +30,14 @@ public class Player extends Entity {
 
     }
 
-    public void setDefaultValues() {
+    public void setDefaultValues() {//sets the initial state of the bee
         x = 100;
         y = 100;
         speed = 4;
         direction = "down";
     }
 
-    public void getPlayerImage() {
+    public void getPlayerImage() { //Creates 4 different sprites that are used to animate the bee
         try {
             up1 = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-01.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-02.png"));
@@ -57,15 +49,15 @@ public class Player extends Entity {
     }
 
     public void update() throws InterruptedException {
-        startTime = System.currentTimeMillis(); // get the start time
+        startTime = System.currentTimeMillis(); // get the current time
 
         detectCollision();
         //Moves bee up and down when corresponding key is pressed
-        if (Player.lives>0 &&(keyH.upPressed == true) || (keyH.downPressed == true)) {
-            if (keyH.upPressed == true && Player.lives>0) {
+        if (Player.lives > 0 && (keyH.upPressed) || (keyH.downPressed)) {
+            if (keyH.upPressed && Player.lives > 0) {
                 direction = "up";
                 y -= speed;
-            } else if (keyH.downPressed == true && Player.lives>0) {
+            } else if (keyH.downPressed && Player.lives > 0) {
                 direction = "down";
                 y += speed;
 
@@ -84,34 +76,34 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
 
-        }
-        else if(Player.lives<=0){
+        } else if (Player.lives <= 0) {
             spriteNumber = 3;
-            if(y<=700){
-            y += (speed /3);}}
-        else{
-            y += (speed / 2);}
-        if(Player.lives<=0 && UI.timeLeft>=0){
-            if (!gameOver){
-            playSE(5);
-            Renderer.stopMusic();
-            gameOver=true;}
+            if (y <= 700) {
+                y += (speed / 3);
+            }
+        } else {
+            y += (speed / 2);
         }
-        else if(Player.lives>0 && UI.timeLeft<=0){
-            if (!youWin){
+        if (Player.lives <= 0 && UI.timeLeft >= 0) {//Once game is over, this plats the losing tune and stops main theme
+            if (!gameOver) {
+                playSE(5);
+                Renderer.stopMusic();
+                gameOver = true;
+            }
+        } else if (Player.lives > 0 && UI.timeLeft <= 0) {
+            if (!youWin) {
                 playSE(2);
-                youWin=true;}
-    }
+                youWin = true;
+            }
+        }
 
 
     }
 
-    public void draw(Graphics2D g2) {
-    /*    g2.setColor(Color.blue);
-        g2.fillRect(x,y, 48, 48);*/
+    public void draw(Graphics2D g2) {//responsible for animating the sprite and updating it
         BufferedImage image = null;
         switch (direction) {
-            case "up":
+            case "up" -> {
                 if (spriteNumber == 1) {
                     image = down;
                 }
@@ -121,8 +113,8 @@ public class Player extends Entity {
                 if (spriteNumber == 3) {
                     image = collide;
                 }
-                break;
-            case "down":
+            }
+            case "down" -> {
                 if (spriteNumber == 1) {
                     image = up1;
                 }
@@ -132,9 +124,7 @@ public class Player extends Entity {
                 if (spriteNumber == 3) {
                     image = collide;
                 }
-                break;
-
-
+            }
         }
 
         g2.drawImage(image, x, y, 100, 100, null);
@@ -152,18 +142,18 @@ public class Player extends Entity {
                 //System.out.println("Collided");
                 spriteNumber = 3;
                 colliding = true;
-                if (colliding=true) {
-                    if ((System.currentTimeMillis()%5)==0 && ((startTime-System.currentTimeMillis())<100)) {
-                        collisions -=5;
+                if (colliding = true) {
+                    if ((System.currentTimeMillis() % 5) == 0 && ((startTime - System.currentTimeMillis()) < 100)) {
+                        collisions -= 5;
                         collidingSound();
-                        if((System.currentTimeMillis()%20)==0)
-                        {stopMusic();}
-
+                        if ((System.currentTimeMillis() % 20) == 0) {
+                            stopMusic();
                         }
+
                     }
                 }
-            lives = collisions/30;
-
+            }
+            lives = collisions / 30;
 
 
         }
@@ -184,17 +174,12 @@ public class Player extends Entity {
         sound2.play();
     }
 
-    public void collidingSound()  {
+    public void collidingSound() {
         playSE(3);
-
-        }
 
     }
 
-
-
-
-        //So pushing works
+}
 
 
 
