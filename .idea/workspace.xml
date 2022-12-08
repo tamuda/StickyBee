@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="270a8ef4-2779-479b-bd3e-1ee7ef402aa6" name="Changes" comment="Testing">
-      <change afterPath="$PROJECT_DIR$/src/beegame/UI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bgMain-02.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beegame/BeeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beegame/BeeGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beegame/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beegame/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beegame/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beegame/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/Sound/mixkit-player-losing-or-failing-2042.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/Sound/lose.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/other/OFJWBB1.ai" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/other/OFJWBB1.ai" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
