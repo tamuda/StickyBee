@@ -2,7 +2,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
-//import static Player.lives;
+/*import static Player.lives;*/
 
 public class UI extends Entity{
      Renderer gp;
@@ -44,7 +44,7 @@ public class UI extends Entity{
 
     public void getLifeImage() {
         try {
-            life = ImageIO.read(getClass().getResourceAsStream("/res/other/OFJWBB1-01.png"));
+            life = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-01.png"));
             background = ImageIO.read(getClass().getResourceAsStream("/bgMain-02.png"));
         } catch (IOException e) {
             e.printStackTrace();

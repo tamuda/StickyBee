@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class BeeGame {
 
-    public static BeeGame beeGame;
+    public  static BeeGame beeGame;
     public final int WIDTH = 800, HEIGHT = 800;
 
 
@@ -27,5 +27,16 @@ public class BeeGame {
 
 
     }
+
+
+    //Renderer Class
+
+
+
+
+
+
+
+
 }
 
