@@ -1,14 +1,8 @@
-package beegame;
-
-import entity.Entity;
-import entity.Player;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import static entity.Player.lives;
+//import static Player.lives;
 
 public class UI extends Entity{
      Renderer gp;
@@ -25,7 +19,7 @@ public class UI extends Entity{
          g2.setFont(helvetiva_40);
          g2.setColor(Color.BLACK);
          g2.drawImage(background,0,0,800,800,null);
-         for(int i=0;i<lives;i++){
+         for(int i=0;i<Player.lives;i++){
          g2.drawImage(life,585+(i*50),50,48,48,null);}
          g2.drawString("Timeleft: "+ String.valueOf(timeLeft),605,50);
          if(Player.lives<=0 && UI.timeLeft>=0){

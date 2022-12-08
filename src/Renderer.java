@@ -1,10 +1,4 @@
-package beegame;
-
 /*import entity.CollisionChecker;*/
-import entity.Player;
-import entity.Worm;
-
-
 
 
 import javax.swing.*;

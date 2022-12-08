@@ -1,10 +1,3 @@
-package entity;
-
-import beegame.KeyHandler;
-import beegame.Renderer;
-import beegame.Sound;
-import beegame.UI;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;

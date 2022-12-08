@@ -1,13 +1,8 @@
-package beegame;
-
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class BeeGame {
 
-    public  static BeeGame beeGame;
+    public static BeeGame beeGame;
     public final int WIDTH = 800, HEIGHT = 800;
 
 
@@ -32,16 +27,5 @@ public class BeeGame {
 
 
     }
-
-
-    //Renderer Class
-
-
-
-
-
-
-
-
 }
 

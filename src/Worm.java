@@ -1,9 +1,3 @@
-package entity;
-
-import beegame.KeyHandler;
-import beegame.Renderer;
-import entity.Entity;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
