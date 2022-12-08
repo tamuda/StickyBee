@@ -1,10 +1,3 @@
-package entity;
-
-import beegame.KeyHandler;
-import beegame.Renderer;
-import beegame.Sound;
-import beegame.UI;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -54,10 +47,10 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/res/other/OFJWBB1-01.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/res/other/OFJWBB1-02.png"));
-            down = ImageIO.read(getClass().getResourceAsStream("/res/other/OFJWBB1-03.png"));
-            collide = ImageIO.read(getClass().getResourceAsStream("/res/other/OFJWBB1-09.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-01.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-02.png"));
+            down = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-03.png"));
+            collide = ImageIO.read(getClass().getResourceAsStream("/OFJWBB1-09.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

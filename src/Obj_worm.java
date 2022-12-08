@@ -1,3 +1,4 @@
+/*
 package objects;
 
 import javax.imageio.ImageIO;
@@ -13,4 +14,4 @@ public class Obj_worm extends SuperObject {
             e.printStackTrace();
         }
     }
-}
+}*/
